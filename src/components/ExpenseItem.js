@@ -1,4 +1,4 @@
-// Write your code at relevant places in the code below:
+// Write your code at the relevant places in the code below:
 
 import "./ExpenseItem.css";
 
