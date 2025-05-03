@@ -8,6 +8,7 @@ const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState(0);
   const [enteredDate, setEnteredDate] = useState('');
+  const [isFormVisible,setIsFormVisible]=useState(false);
   
 
   const titleChangeHandler = (event) => {
@@ -21,6 +22,12 @@ const ExpenseForm = (props) => {
   const dateChangeHandler = (event) => {
     setEnteredDate(event.target.value);
   };
+  const showFormHandler=()=>{
+    setIsFormVisible(true);
+  }
+  const hideFormHandler=()=>{
+    setIsFormVisible(false);
+  }
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -38,6 +45,9 @@ const ExpenseForm = (props) => {
   }
 
   return (
+    <div>
+  {!isFormVisible && ( <button type="submit" onClick={showFormHandler}>Add Expense</button>)}
+  {isFormVisible && (
     <form onSubmit={formSubmitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
@@ -61,10 +71,14 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button type="submit">Add Expense</button>
+        <button type="button" onClick={hideFormHandler}>Cancel</button>
+        <button type="submit" onClick={showFormHandler}>Add Expense</button>
       </div>
+     
     </form>
-  );
-};
+  )}
+    </div>
+    )
+}
 
 export default ExpenseForm;
